@@ -1,0 +1,41 @@
+{% extends "admin/base.html" %}
+{% load static i18n %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}" sizes="48x48">
+  <style>
+    .sidebar-link{
+      display: flex;
+      align-items: center;
+    }
+    #changelist-form .actions label:nth-of-type(2){
+      margin-left: 10px;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function(e) {
+      var links = document.querySelectorAll('a[href="/"]');
+      for (i = 0; i < links.length; ++i) {
+        links[i].setAttribute('target', '_blank');
+      }
+    });
+  </script>
+{% endblock %}
+
+{% block branding %}
+  <h1 id="site-name">
+    <a href="{% url 'admin:index' %}" class="sidebar-link">
+      <img src="{% static 'images/logo.png' %}" height="70px" style="padding-right: 10px;">
+      <div>
+        <span class="sidebar-link-label">
+          {{ site_header|default:_('Django administration') }}
+        </span>
+      </div>
+    </a>
+  </h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

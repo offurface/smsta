@@ -1,0 +1,54 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "@mdi/font": "^4.9.95",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.4.1",
+    "core-js": "^3.6.4",
+    "jquery": "^3.4.1",
+    "js-cookie": "^2.2.1",
+    "jwt-decode": "^2.2.0",
+    "lodash": "^4.17.15",
+    "popper.js": "^1.16.1",
+    "sweetalert2": "^9.9.0",
+    "vue": "^2.6.11",
+    "vue-i18n": "^8.15.3",
+    "vue-meta": "^2.3.2",
+    "vue-router": "^3.1.5",
+    "vuex": "^3.1.2",
+    "vuex-router-sync": "^5.0.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.2.2",
+    "@vue/cli-plugin-eslint": "^4.2.2",
+    "@vue/cli-service": "^4.2.2",
+    "@vue/eslint-config-standard": "^5.1.2",
+    "babel-eslint": "^10.0.3",
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^4.1.10",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "^6.1.2",
+    "node-sass": "^4.13.1",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11",
+    "webfonts-loader": "^5.1.1",
+    "webpack-bundle-tracker": "^0.4.3"
+  },
+  "browsers": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

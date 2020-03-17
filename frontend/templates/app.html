@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n static utils components %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% block title %}{% trans "App Name" %}{% endblock title %}
+{% block head %}
+  <script>
+    window.config = {
+      appName: '{% trans "App Name" %}',
+      locale: '{{ LANGUAGE_CODE|default:"ru" }}',
+      locales: JSON.parse('{% autoescape off %}{% get_langs_json LANGUAGES %}{% endautoescape %}')
+    };
+  </script>
+{% endblock head %}
+
+{% block body %}
+  {% noscript _("Ваш браузер не поддерживает скрипты") %}
+  <div id="app" class="vue-app"></div>
+{% endblock body %}

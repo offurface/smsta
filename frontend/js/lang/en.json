@@ -1,0 +1,13 @@
+{
+  "ok": "Ok",
+  "cancel": "Cancel",
+  "login": "Login",
+  "registration": "Registration",
+  "error_alert_title": "Server Error",
+  "error_alert_text": "An error occurred on the server contact support",
+  "token_expired_alert_title": "Authorisation Error",
+  "token_expired_alert_text": "You will be redirected to the login page",
+  "page_not_found": "Page Not Found",
+  "user_name": "Login",
+  "password": "Password"
+}
