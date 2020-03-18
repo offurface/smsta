@@ -1,7 +1,15 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
-from apps.api.other.enums import GENDERS, FORM_TRAINING, DISABILITY_GROUP
+from apps.api.other.enums import (
+    GENDERS,
+    FORM_TRAINING,
+    DISABILITY_GROUP,
+    PAYMENT_TRAINING,
+    FORM_TRAINING,
+    TYPE_TRAINING,
+    TypeTraining,
+)
 
 
 class Faculty(models.Model):
@@ -9,6 +17,9 @@ class Faculty(models.Model):
     Факультет
     """
 
+    public_id = models.IntegerField(
+        verbose_name=_("Цифра факультета"), blank=True, null=True
+    )
     short_name = models.CharField(
         max_length=100, verbose_name=_("Сокращенное наименование")
     )
@@ -56,6 +67,9 @@ class AcademicGroup(models.Model):
     Группа
     """
 
+    start_date = models.DateField(
+        verbose_name="Дата начала обучения", blank=True, null=True,
+    )
     tutor = models.ForeignKey(
         get_user_model(),
         on_delete=models.SET_NULL,
@@ -70,15 +84,33 @@ class AcademicGroup(models.Model):
         blank=True,
         null=True,
     )
-    is_correspondence = models.BooleanField(
-        default=False, verbose_name=_("Это заочная группа?")
+    payment_training = models.IntegerField(
+        choices=PAYMENT_TRAINING, verbose_name=_("Форма обучения"), default=1
     )
-    is_abbreviated = models.BooleanField(
-        default=False, verbose_name=_("Это сокращенная группа?")
+    type_training = models.IntegerField(
+        choices=TYPE_TRAINING,
+        verbose_name=_("Не сокращенная/Сокращенная"),
+        default=1,
+    )
+    subgroup_number = models.IntegerField(
+        verbose_name=_("Номер подгруппы"), default=1,
     )
 
+    @property
+    def name(self):
+        """
+        Возвращает название группы
+        TODO: Написать свойство возвращающее названия группы
+        """
+        numbers = ""
+        letters = ""
+        if self.type_training != TypeTraining.UNABRIDGED:
+            letters += "S"
+        # ПИZS-341
+        return letters + "-" + numbers
+
     def __str__(self):
-        return self.name
+        return ""
 
     class Meta:
         verbose_name = "Академическая группа"
@@ -95,10 +127,14 @@ class Student(models.Model):
     # Nationality(Национальность),
     # Native language(Родной язык)
     academic_group = models.ForeignKey(
-        AcademicGroup, on_delete=models.SET_NULL, verbose_name="Группа"
+        AcademicGroup,
+        on_delete=models.SET_NULL,
+        verbose_name="Группа",
+        blank=True,
+        null=True,
     )
-    first_name = models.CharField(verbose_name=_("Имя"), max_length=30)
-    last_name = models.CharField(verbose_name=_("Фамилия"), max_length=150)
+    name = models.CharField(verbose_name=_("Имя"), max_length=30)
+    surname = models.CharField(verbose_name=_("Фамилия"), max_length=150)
     patronymic = models.CharField(
         verbose_name=_("Отчество"), max_length=150, blank=True, null=True
     )
@@ -115,7 +151,7 @@ class Student(models.Model):
     series = models.IntegerField(verbose_name=_("Серия пасспорта"))
     number = models.IntegerField(verbose_name=_("Номер пасспорта"))
     form_training = models.IntegerField(
-        choices=FORM_TRAINING, verbose_name=_("Форма обучения")
+        choices=PAYMENT_TRAINING, verbose_name=_("Форма обучения")
     )
     disability_group = models.IntegerField(
         choices=DISABILITY_GROUP,
@@ -123,7 +159,6 @@ class Student(models.Model):
         blank=True,
         null=True,
     )
-
     is_orphan = models.BooleanField(
         default=False,
         verbose_name=_(
@@ -179,18 +214,81 @@ class Student(models.Model):
             "Студенты, прибывшие на обучение из Юго-востока Украины"
         ),
     )
-    # TODO: Добавить поля
-    # Студенты, проживающих в общежитии:
-    #     из них:
-    #     бюджетная ф.о.
-    #     контрактная ф.о.
-    #     семейные
-
-    # variables = models.BooleanField(default=False, verbose_name=_(""))
 
     def __str__(self):
-        return self.first_name
+        return self.surname + " " + self.name
 
     class Meta:
         verbose_name = "Студент"
         verbose_name_plural = "Студенты"
+
+
+class Parent(models.Model):
+
+    kid = models.ForeignKey(
+        Student,
+        on_delete=models.SET_NULL,
+        verbose_name="Ребёнок",
+        blank=True,
+        null=True,
+    )
+    name = models.CharField(verbose_name="ФИО", max_length=255)
+    work = models.CharField(
+        verbose_name="Место работы, должность", max_length=255
+    )
+    phone = models.CharField(verbose_name="Телефон", max_length=25)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Родитель"
+        verbose_name_plural = "Родители"
+
+
+class Hostel(models.Model):
+
+    name = models.CharField(verbose_name="Название", max_length=255)
+    address = models.CharField(verbose_name="Адрес", max_length=255)
+    phone = models.CharField(verbose_name="Телефон", max_length=25)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Общежитие"
+        verbose_name_plural = "Общежития"
+
+
+class ResidenceHostel(models.Model):
+    """
+    Проживающие в общежитии студенты
+    """
+
+    student = models.ForeignKey(
+        Student,
+        verbose_name="Студент",
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+    hostel = models.ForeignKey(
+        Hostel,
+        verbose_name="Общежитие",
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+    room = models.IntegerField(
+        verbose_name="Номер комнаты", blank=True, null=True,
+    )
+    is_family = models.BooleanField(
+        default=False, verbose_name=_("Семейная комната"),
+    )
+
+    def __str__(self):
+        return self.student
+
+    class Meta:
+        verbose_name = "Проживающий в общежитии"
+        verbose_name_plural = "Проживающие в общежитии"
