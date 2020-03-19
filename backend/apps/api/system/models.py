@@ -85,7 +85,7 @@ class AcademicGroup(models.Model):
         null=True,
     )
     payment_training = models.IntegerField(
-        choices=PAYMENT_TRAINING, verbose_name=_("Форма обучения"), default=1
+        choices=FORM_TRAINING, verbose_name=_("Форма обучения"), default=1
     )
     type_training = models.IntegerField(
         choices=TYPE_TRAINING,
@@ -224,19 +224,22 @@ class Student(models.Model):
 
 
 class Parent(models.Model):
+    """
+    Родитель
+    """
 
     kid = models.ForeignKey(
         Student,
         on_delete=models.SET_NULL,
-        verbose_name="Ребёнок",
+        verbose_name=_("Ребёнок"),
         blank=True,
         null=True,
     )
-    name = models.CharField(verbose_name="ФИО", max_length=255)
+    name = models.CharField(verbose_name=_("ФИО"), max_length=255)
     work = models.CharField(
-        verbose_name="Место работы, должность", max_length=255
+        verbose_name=_("Место работы, должность"), max_length=255
     )
-    phone = models.CharField(verbose_name="Телефон", max_length=25)
+    phone = models.CharField(verbose_name=_("Телефон"), max_length=25)
 
     def __str__(self):
         return self.name
@@ -247,10 +250,13 @@ class Parent(models.Model):
 
 
 class Hostel(models.Model):
+    """
+    Общежитие
+    """
 
-    name = models.CharField(verbose_name="Название", max_length=255)
-    address = models.CharField(verbose_name="Адрес", max_length=255)
-    phone = models.CharField(verbose_name="Телефон", max_length=25)
+    name = models.CharField(verbose_name=_("Название"), max_length=255)
+    address = models.CharField(verbose_name=_("Адрес"), max_length=255)
+    phone = models.CharField(verbose_name=_("Телефон"), max_length=25)
 
     def __str__(self):
         return self.name
@@ -267,20 +273,20 @@ class ResidenceHostel(models.Model):
 
     student = models.ForeignKey(
         Student,
-        verbose_name="Студент",
+        verbose_name=_("Студент"),
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
     )
     hostel = models.ForeignKey(
         Hostel,
-        verbose_name="Общежитие",
+        verbose_name=_("Общежитие"),
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
     )
     room = models.IntegerField(
-        verbose_name="Номер комнаты", blank=True, null=True,
+        verbose_name=_("Номер комнаты"), blank=True, null=True
     )
     is_family = models.BooleanField(
         default=False, verbose_name=_("Семейная комната"),
@@ -292,3 +298,50 @@ class ResidenceHostel(models.Model):
     class Meta:
         verbose_name = "Проживающий в общежитии"
         verbose_name_plural = "Проживающие в общежитии"
+
+
+class VisitHostel(models.Model):
+    """
+    Журнал посещения общежития
+    """
+
+    date = models.DateField(verbose_name=_("Дата посещения"))
+    start_time = models.TimeField(verbose_name=_("Время прихода"))
+    end_time = models.TimeField(verbose_name=_("Время ухода"))
+    hostel = models.ForeignKey(
+        Hostel,
+        verbose_name=_("Общежитие"),
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+    students = models.TextField(
+        verbose_name=_("ФИО Студентов"), blank=True, null=True
+    )
+    description = models.TextField(
+        verbose_name=_("Заметки"), blank=True, null=True
+    )
+
+    def __str__(self):
+        return ""
+
+    class Meta:
+        verbose_name = "Журнал посещения общежития"
+        verbose_name_plural = "Журнал посещения общежития"
+
+
+class СuratorHour(models.Model):
+    """
+    Журнал кураторского часа
+    """
+
+    date_time = models.DateTimeField(verbose_name=_("Дата и время проведения"))
+    room = models.CharField(verbose_name=_("Аудитория"), max_length=9)
+    title = models.CharField(verbose_name=_("Тема"), max_length=255)
+
+    def __str__(self):
+        return ""
+
+    class Meta:
+        verbose_name = "Журнал кураторского часа"
+        verbose_name_plural = "Журнал кураторского часа"

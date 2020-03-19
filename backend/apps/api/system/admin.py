@@ -52,6 +52,9 @@ class FacultyAdmin(BaseAdminMixin, ModelAdmin):
 
 
 @register(AcademicGroup)
-class FacultyAdmin(BaseAdminMixin, ModelAdmin):
-    list_display = ("name",)
+class AcademicGroupAdmin(BaseAdminMixin, ModelAdmin):
+    """
+    Админка группы
+    """
 
+    list_display = ("name",)

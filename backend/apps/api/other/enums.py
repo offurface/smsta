@@ -58,7 +58,7 @@ class Semesters(ChoicesEnumMixin, Enum):
 @unique
 class FormTraining(ChoicesEnumMixin, Enum):
     """
-
+    Вид обучения
     """
 
     INTRAMURAL = 1, _("Очное")
