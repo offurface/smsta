@@ -69,7 +69,7 @@ class FormTraining(ChoicesEnumMixin, Enum):
 @unique
 class PaymentTraining(ChoicesEnumMixin, Enum):
     """
-    Оплата обучения
+    Способ финансирования
     """
 
     BUDGETARY = 1, _("Бюджетная")

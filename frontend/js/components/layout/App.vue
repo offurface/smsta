@@ -7,43 +7,43 @@
 </template>
 
 <script>
-  const requireContext = require.context('@/layouts', false, /.*\.vue$/)
+const requireContext = require.context('@/layouts', false, /.*\.vue$/)
 
-  const layouts = requireContext
-    .keys()
-    .map(file => [file.replace(/(^.\/)|(\.vue$)/g, ''), requireContext(file)])
-    .reduce((components, [name, component]) => {
-      components[name] = component.default || component
-      return components
-    }, {})
+const layouts = requireContext
+  .keys()
+  .map(file => [file.replace(/(^.\/)|(\.vue$)/g, ''), requireContext(file)])
+  .reduce((components, [name, component]) => {
+    components[name] = component.default || component
+    return components
+  }, {})
 
-  export default {
-    data: () => ({
-      layout: null,
-      defaultLayout: 'default'
-    }),
+export default {
+  data: () => ({
+    layout: null,
+    defaultLayout: 'default'
+  }),
 
-    metaInfo() {
-      const { appName } = window.config
+  metaInfo() {
+    const { appName } = window.config
 
-      return {
-        title: appName,
-        titleTemplate: `%s | ${appName}`
+    return {
+      title: appName,
+      titleTemplate: `%s | ${appName}`
+    }
+  },
+
+  methods: {
+    setLayout(layout) {
+      if (!layout || !layouts[layout]) {
+        layout = this.defaultLayout
       }
-    },
 
-    methods: {
-      setLayout(layout) {
-        if (!layout || !layouts[layout]) {
-          layout = this.defaultLayout
-        }
-
-        this.layout = layouts[layout]
-      }
+      this.layout = layouts[layout]
     }
   }
+}
 </script>
 
 <style lang="sass">
-  @import '~style/app'
+@import '~style/app'
 </style>

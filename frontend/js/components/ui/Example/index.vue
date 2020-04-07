@@ -3,11 +3,7 @@
     <div class="row min-vh-100 py-4 align-items-center">
       <div class="col-12 text-center">
         <div class="batman__animate">
-          <img
-            class="batman__logo"
-            src="/static/images/batman.png"
-            alt="logo"
-          />
+          <img class="batman__logo" src="/static/images/batman.png" alt="logo" />
           <img
             class="batman__wheel batman__wheel--back"
             src="/static/images/back_wheel.png"
@@ -21,10 +17,7 @@
         </div>
         <div :style="{ color: color }">
           <h3>
-            <div
-              class="d-inline-block pb-2"
-              :style="{ 'border-bottom': `1px solid ${color}` }"
-            >
+            <div class="d-inline-block pb-2" :style="{ 'border-bottom': `1px solid ${color}` }">
               <i class="ic ic-batman"></i>
               <slot></slot>
             </div>
@@ -53,36 +46,36 @@
 </template>
 
 <script>
-  import Link from './Link'
+import Link from './Link'
 
-  export default {
-    components: {
-      item: Link
+export default {
+  components: {
+    item: Link
+  },
+  props: {
+    color: {
+      type: String,
+      default: 'white'
     },
-    props: {
-      color: {
-        type: String,
-        default: 'white'
-      },
-      showLinks: {
-        type: Boolean,
-        default: false
-      }
-    },
-    computed: {
-      getCategory: function() {
-        return this.$store.getters['links/items']
-      }
+    showLinks: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    getCategory: function() {
+      return this.$store.getters['links/items']
     }
   }
+}
 </script>
 
 <style lang="sass" scoped>
-  @keyframes flame-animation
-    100%
-      border-top-width: 1.9em
-      border-left-width: .5em
-      border-left-width: .5em
+@keyframes flame-animation
+  100%
+    border-top-width: 1.9em
+    border-left-width: .5em
+    border-left-width: .5em
 
   @keyframes spin
     0%
@@ -90,8 +83,8 @@
     100%
       transform: rotate(360deg)
   .ic
-    vertical-align: bottom;
-    font-size: 1.5rem;
+    vertical-align: bottom
+    font-size: 1.5rem
   .batman
     &__links
       max-width: 750px
@@ -122,6 +115,6 @@
         position: absolute
         bottom: 0.1rem
         transform: rotate(90deg)
-        z-index: 6;
+        z-index: 6
         animation: flame-animation 0.2s linear infinite
 </style>

@@ -31,8 +31,8 @@ class Faculty(models.Model):
         return self.short_name
 
     class Meta:
-        verbose_name = "Факультет"
-        verbose_name_plural = "Факультеты"
+        verbose_name = _("Факультет")
+        verbose_name_plural = _("Факультеты")
 
 
 class Department(models.Model):
@@ -58,8 +58,8 @@ class Department(models.Model):
         return self.full_name
 
     class Meta:
-        verbose_name = "Кафедра"
-        verbose_name_plural = "Кафедры"
+        verbose_name = _("Кафедра")
+        verbose_name_plural = _("Кафедры")
 
 
 class AcademicGroup(models.Model):
@@ -113,8 +113,8 @@ class AcademicGroup(models.Model):
         return ""
 
     class Meta:
-        verbose_name = "Академическая группа"
-        verbose_name_plural = "Академические группы"
+        verbose_name = _("Академическая группа")
+        verbose_name_plural = _("Академические группы")
 
 
 class Student(models.Model):
@@ -219,8 +219,8 @@ class Student(models.Model):
         return self.surname + " " + self.name
 
     class Meta:
-        verbose_name = "Студент"
-        verbose_name_plural = "Студенты"
+        verbose_name = _("Студент")
+        verbose_name_plural = _("Студенты")
 
 
 class Parent(models.Model):
@@ -245,8 +245,8 @@ class Parent(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "Родитель"
-        verbose_name_plural = "Родители"
+        verbose_name = _("Родитель")
+        verbose_name_plural = _("Родители")
 
 
 class Hostel(models.Model):
@@ -262,8 +262,8 @@ class Hostel(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "Общежитие"
-        verbose_name_plural = "Общежития"
+        verbose_name = _("Общежитие")
+        verbose_name_plural = _("Общежития")
 
 
 class ResidenceHostel(models.Model):
@@ -296,8 +296,8 @@ class ResidenceHostel(models.Model):
         return self.student
 
     class Meta:
-        verbose_name = "Проживающий в общежитии"
-        verbose_name_plural = "Проживающие в общежитии"
+        verbose_name = _("Проживающий в общежитии")
+        verbose_name_plural = _("Проживающие в общежитии")
 
 
 class VisitHostel(models.Model):
@@ -326,8 +326,8 @@ class VisitHostel(models.Model):
         return ""
 
     class Meta:
-        verbose_name = "Журнал посещения общежития"
-        verbose_name_plural = "Журнал посещения общежития"
+        verbose_name = _("Журнал посещения общежития")
+        verbose_name_plural = _("Журнал посещения общежития")
 
 
 class СuratorHour(models.Model):
@@ -343,5 +343,5 @@ class СuratorHour(models.Model):
         return ""
 
     class Meta:
-        verbose_name = "Журнал кураторского часа"
-        verbose_name_plural = "Журнал кураторского часа"
+        verbose_name = _("Журнал кураторского часа")
+        verbose_name_plural = _("Журнал кураторского часа")

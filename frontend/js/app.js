@@ -2,6 +2,7 @@ import Vue from 'vue'
 import store from '@/store'
 import router from '@/router'
 import i18n from '@/plugins/i18n'
+import vuetify from '@/plugins/vuetify'
 import App from '@/components/layout/App'
 
 import '@/plugins'
@@ -15,6 +16,7 @@ new Vue({
   i18n,
   store,
   router,
+  vuetify,
   ...App
 })
 /* eslint-enable no-new */

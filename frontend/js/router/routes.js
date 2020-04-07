@@ -12,7 +12,7 @@ const Login = () =>
   )
 
 export default [
-  { path: '/', name: 'home', component: Home },
-  { path: '/login/', name: 'login', component: Login },
+  { path: '/', name: 'login', component: Login },
+  { path: '/home/', name: 'home', component: Home },
   { path: '*', name: '404', component: NotFound }
 ]
