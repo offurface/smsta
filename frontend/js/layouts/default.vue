@@ -5,27 +5,37 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>Application</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn @click="logout()">out</v-btn>
+      <v-btn class="mx-2" @click="logout()" fab dark small color="pink">
+        <v-icon dark>mdi-account-cancel</v-icon>
+      </v-btn>
     </v-app-bar>
     <!-- Navbar end -->
 
     <!-- Sidebar start -->
     <v-navigation-drawer v-model="drawer" app>
       <v-list dense>
-        <v-list-item link>
+        <v-list-item link to="/profile">
+          <v-list-item-action>
+            <v-icon>mdi-account</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Profile</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item link to="/home">
           <v-list-item-action>
             <v-icon>mdi-view-dashboard</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Dashboard</v-list-item-title>
+            <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link to="/">
+        <v-list-item link to="/test">
           <v-list-item-action>
             <v-icon>mdi-settings</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Settings</v-list-item-title>
+            <v-list-item-title>Test</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -33,7 +43,7 @@
     <!-- Sidebar end -->
 
     <!-- Content start -->
-    <v-content>
+    <v-content transition="scroll-x-transition">
       <child></child>
     </v-content>
     <!-- Content end -->

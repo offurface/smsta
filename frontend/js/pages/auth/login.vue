@@ -45,6 +45,12 @@ export default {
       titleTemplate: null
     }
   },
+  created() {
+    if (this.$store.getters['auth/check']) {
+      const next = this.$route.query.next || '/home'
+      this.$router.push(next)
+    }
+  },
   data() {
     return {
       username: '',
