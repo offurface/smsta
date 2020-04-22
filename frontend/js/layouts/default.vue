@@ -12,30 +12,15 @@
     <!-- Navbar end -->
 
     <!-- Sidebar start -->
-    <v-navigation-drawer v-model="drawer" app>
-      <v-list dense>
-        <v-list-item link to="/profile">
+    <v-navigation-drawer :clipped="true" v-model="drawer" absolute temporary app>
+      <v-list v-for="(category, i) in sidebar" :key="i" dense>
+        <v-subheader>{{ category.name }}</v-subheader>
+        <v-list-item v-for="(link, j) in category.items" :key="j" link :to="link.to">
           <v-list-item-action>
-            <v-icon>mdi-account</v-icon>
+            <v-icon>{{ link.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Profile</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link to="/home">
-          <v-list-item-action>
-            <v-icon>mdi-view-dashboard</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Home</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link to="/test">
-          <v-list-item-action>
-            <v-icon>mdi-settings</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Test</v-list-item-title>
+            <v-list-item-title>{{ link.name }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -43,7 +28,7 @@
     <!-- Sidebar end -->
 
     <!-- Content start -->
-    <v-content transition="scroll-x-transition">
+    <v-content transition="slide-x-transition">
       <child></child>
     </v-content>
     <!-- Content end -->
@@ -57,12 +42,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'MainLayout',
   data() {
     return {
       drawer: null
     }
+  },
+  computed: {
+    ...mapGetters('interface', ['sidebar'])
   },
   methods: {
     logout() {

@@ -4,14 +4,14 @@ from django.utils.translation import gettext_lazy as _
 from etc.choices import ChoicesEnumMixin, get_choices
 
 
-# @unique
-# class DisabilityGroup(ChoicesEnumMixin, Enum):
-#     """
-#     Роль
-#     """
+@unique
+class Role(ChoicesEnumMixin, Enum):
+    """
+    Роль
+    """
 
-#     FIRST = 1, _("Тютор")
-#     SECOND = 2, _("2 группа")
+    TUTOR = 1, _("Тютор")
+    SUPERVISORY = 2, _("Зам декана по в.р.")
 
 
 @unique
@@ -72,6 +72,7 @@ class PaymentTraining(ChoicesEnumMixin, Enum):
     Способ финансирования
     """
 
+    NONE = 0, _("Не выбрано")
     BUDGETARY = 1, _("Бюджетная")
     COMMERCIAL = 2, _("Комерческая")
 

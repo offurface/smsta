@@ -1,6 +1,9 @@
 <template>
   <v-col xs="11" sm="7" md="6" lg="5">
     <v-card class="pa-6">
+      <v-card-title>
+        <h1 class="display-1 mx-auto">Авторизация</h1>
+      </v-card-title>
       <v-form @submit.prevent="handleSubmit">
         <v-card-text>
           <v-text-field
@@ -60,7 +63,6 @@ export default {
   methods: {
     handleSubmit(e) {
       const { username, password } = this
-      console.log({ username, password })
       const { dispatch } = this.$store
       if (username && password) {
         dispatch('auth/login', { username, password })

@@ -27,6 +27,7 @@ PROJECT_APPS = [
     "apps.api.auth",
     "apps.api.other",
     "apps.api.system",
+    "apps.api.documents",
 ]
 
 DEVELOPER_APPS = [

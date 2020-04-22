@@ -1,11 +1,31 @@
 export const state = {
-  // sidebar: null
+  sidebarItems: [
+    {
+      name: 'Основное',
+      role: '',
+      items: [
+        {
+          icon: 'mdi-view-dashboard',
+          name: 'Главная',
+          to: '/home'
+        },
+        {
+          icon: 'mdi-settings',
+          name: 'Test',
+          to: '/test'
+        },
+        {
+          icon: 'mdi-content-paste',
+          name: 'Группы',
+          to: '/groups'
+        }
+      ]
+    }
+  ]
 }
 
 export const getters = {
-  // sidebarVisible(state) {
-  //   return state.sidebar
-  // }
+  sidebar: state => state.sidebarItems
 }
 
 export const mutations = {

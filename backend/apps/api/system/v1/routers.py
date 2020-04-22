@@ -1,7 +1,9 @@
 from django.urls import path
+from . import views
 
 app_name = "system"
 
 urlpatterns = [
-    # path("", SystemView.as_view(), name="index"),
+    path("groups/", views.AcademicGroupList.as_view()),
+    path("groups/<int:pk>/", views.AcademicGroupDetail.as_view()),
 ]

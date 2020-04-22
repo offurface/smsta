@@ -4,9 +4,19 @@
       <v-container fluid>
         <v-row align="center" justify="center">
           <v-col>
-            <v-btn @click="logger()">log</v-btn>
+            <v-list dense>
+              <v-list-item
+                v-for="group in groups"
+                :key="group.pk"
+                link
+                :to="{ name: 'groups-detail', params: { pk: group.pk }}"
+              >
+                <v-list-item-content>
+                  <v-list-item-title>{{ group.name }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
           </v-col>
-          <v-col v-for="group in groups" :key="group.id">{{ group.name }}</v-col>
         </v-row>
       </v-container>
     </v-content>
@@ -21,17 +31,12 @@ export default {
   props: {
     source: String
   },
-  methods: {
-    logger() {
-      console.log(this.groups)
-    }
-  },
+  methods: {},
   computed: {
     ...mapGetters('groups', ['groups'])
   },
   created() {
     this.$store.dispatch('groups/loadGroups')
-    console.log('created')
   }
 }
 </script>

@@ -1,7 +1,6 @@
-from django.urls import path
+from django.urls import include, path
 
-app_name = "system"
 
 urlpatterns = [
-    # path("", SystemView.as_view(), name="index"),
+    # path("system/", include("apps.api.system.v1")),
 ]

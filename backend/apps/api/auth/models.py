@@ -48,8 +48,12 @@ class User(AbstractBaseUser, PermissionsMixin):
             "unique": _("A user with that username already exists."),
         },
     )
+    role = models.IntegerField(verbose_name=_("Роль"), default=1)
     first_name = models.CharField(_("first name"), max_length=30, blank=True)
     last_name = models.CharField(_("last name"), max_length=150, blank=True)
+    patronymic = models.CharField(
+        verbose_name=_("Отчество"), max_length=150, blank=True, null=True
+    )
     email = models.EmailField(_("email address"), blank=True)
     is_staff = models.BooleanField(
         _("staff status"),

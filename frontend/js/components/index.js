@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Child from './layout/Child'
 import Example from './ui/Example'
+import Preloader from './ui/other/Preloader'
   ;[
+    Preloader,
     Child,
     {
       name: 'example',

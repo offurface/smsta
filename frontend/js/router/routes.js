@@ -14,14 +14,19 @@ const Test = () =>
   import(/* webpackChunkName: "login" */ '@/pages/test').then(
     m => m.default || m
   )
-const Profile = () =>
-  import(/* webpackChunkName: "login" */ '@/pages/profile').then(
+const GroupsList = () =>
+  import(/* webpackChunkName: "login" */ '@/pages/academic-group/groups-list').then(
+    m => m.default || m
+  )
+const GroupsDetail = () =>
+  import(/* webpackChunkName: "login" */ '@/pages/academic-group/groups-detail').then(
     m => m.default || m
   )
 export default [
   { path: '/', name: 'login', component: Login },
   { path: '/home/', name: 'home', component: Home },
   { path: '/test/', name: 'test', component: Test },
-  { path: '/profile/', name: 'profile', component: Profile },
+  { path: '/groups/', name: 'groups-list', component: GroupsList },
+  { path: '/groups/:pk', name: 'groups-detail', component: GroupsDetail },
   { path: '*', name: '404', component: NotFound }
 ]
