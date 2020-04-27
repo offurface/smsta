@@ -15,13 +15,13 @@ const Test = () =>
     m => m.default || m
   )
 const GroupsList = () =>
-  import(/* webpackChunkName: "login" */ '@/pages/academic-group/groups-list').then(
-    m => m.default || m
-  )
+  import(
+    /* webpackChunkName: "login" */ '@/pages/academic-group/groups-list'
+  ).then(m => m.default || m)
 const GroupsDetail = () =>
-  import(/* webpackChunkName: "login" */ '@/pages/academic-group/groups-detail').then(
-    m => m.default || m
-  )
+  import(
+    /* webpackChunkName: "login" */ '@/pages/academic-group/groups-detail'
+  ).then(m => m.default || m)
 export default [
   { path: '/', name: 'login', component: Login },
   { path: '/home/', name: 'home', component: Home },

@@ -14,15 +14,15 @@
 </template>
 
 <script>
-import auth from '@/middleware/auth'
-import { mapGetters } from 'vuex'
-export default {
-  middleware: auth,
-  props: {
-    source: String
-  },
-  computed: {
-    ...mapGetters('auth', ['user'])
+  import auth from '@/middleware/auth'
+  import { mapGetters } from 'vuex'
+  export default {
+    middleware: auth,
+    props: {
+      source: String
+    },
+    computed: {
+      ...mapGetters('auth', ['user'])
+    }
   }
-}
 </script>
