@@ -71,8 +71,9 @@
               const next = this.$route.query.next || '/home'
               this.$router.push(next)
             })
+            // eslint-disable-next-line handle-callback-err
             .catch(error => {
-              console.log('ssd', error)
+              // console.log('ssd', error)
             })
         }
       }

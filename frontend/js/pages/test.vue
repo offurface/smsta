@@ -3,9 +3,7 @@
     <v-content>
       <v-container fluid>
         <v-row align="center" justify="center">
-          <v-col>
-            <v-btn @click="logger()">log</v-btn>
-          </v-col>
+          <v-col> </v-col>
           <v-col v-for="group in groups" :key="group.id">{{
             group.name
           }}</v-col>
@@ -23,17 +21,12 @@
     props: {
       source: String
     },
-    methods: {
-      logger() {
-        console.log(this.groups)
-      }
-    },
+    methods: {},
     computed: {
       ...mapGetters('groups', ['groups'])
     },
     created() {
       this.$store.dispatch('groups/loadGroups')
-      console.log('created')
     }
   }
 </script>
