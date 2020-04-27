@@ -5,14 +5,9 @@ export const state = {
       role: '',
       items: [
         {
-          icon: 'mdi-view-dashboard',
+          icon: 'mdi-home',
           name: 'Главная',
           to: '/home'
-        },
-        {
-          icon: 'mdi-settings',
-          name: 'Test',
-          to: '/test'
         },
         {
           icon: 'mdi-content-paste',

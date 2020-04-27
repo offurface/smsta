@@ -5,16 +5,6 @@ from etc.choices import ChoicesEnumMixin, get_choices
 
 
 @unique
-class Role(ChoicesEnumMixin, Enum):
-    """
-    Роль
-    """
-
-    TUTOR = 1, _("Тютор")
-    SUPERVISORY = 2, _("Зам декана по в.р.")
-
-
-@unique
 class Gender(ChoicesEnumMixin, Enum):
     """
     Пол

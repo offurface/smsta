@@ -28,10 +28,10 @@ class Document(View):
                 gender=models.enums.Gender.FEMALE.value
             ).count(),
             "budgetary": querysetStudents.filter(
-                form_training=models.enums.PaymentTraining.BUDGETARY.value
+                payment_training=models.enums.PaymentTraining.BUDGETARY.value
             ).count(),
             "commercial": querysetStudents.filter(
-                form_training=models.enums.PaymentTraining.COMMERCIAL.value
+                payment_training=models.enums.PaymentTraining.COMMERCIAL.value
             ).count(),
             "is_orphan": querysetStudents.filter(is_orphan=True).count(),
             "disability_group": querysetStudents.filter(

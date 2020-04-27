@@ -1,6 +1,10 @@
 <template>
   <div class="m-2">
-    <router-link v-if="noReload" :to="{ name: url }" class="text-light text-nowrap">
+    <router-link
+      v-if="noReload"
+      :to="{ name: url }"
+      class="text-light text-nowrap"
+    >
       <i :class="icon"></i>
       {{ name }}
     </router-link>
@@ -12,8 +16,8 @@
 </template>
 
 <script>
-export default {
-  name: 'example-link',
-  props: ['icon', 'name', 'url', 'noReload']
-}
+  export default {
+    name: 'example-link',
+    props: ['icon', 'name', 'url', 'noReload']
+  }
 </script>

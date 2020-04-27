@@ -9,7 +9,7 @@ from .enums import (
 )
 
 
-class AbstractStudent(models.Model):
+class Student(models.Model):
     """
     Студент (абстрактный класс)
     """
@@ -149,31 +149,33 @@ class AbstractStudent(models.Model):
         return self.surname + " " + self.name
 
     class Meta:
-        abstract = True
-
-
-class Student(AbstractStudent):
-    """
-    Студент
-    """
-
-    class Meta:
+        # abstract = True
         verbose_name = _("Студент")
         verbose_name_plural = _("Студенты")
 
 
-class StudentArchive(AbstractStudent):
-    """
-    Студент (Архив)
-    """
+# class Student(AbstractStudent):
+#     """
+#     Студент
+#     """
 
-    date_archiving = models.DateTimeField(
-        verbose_name=_("Дата архивирования"), auto_now_add=True, blank=True
-    )
+#     class Meta:
+#         verbose_name = _("Студент")
+#         verbose_name_plural = _("Студенты")
 
-    class Meta:
-        verbose_name = _("Студент (Архив)")
-        verbose_name_plural = _("Студент (Архив)")
+
+# class StudentArchive(AbstractStudent):
+#     """
+#     Студент (Архив)
+#     """
+
+#     date_archiving = models.DateTimeField(
+#         verbose_name=_("Дата архивирования"), auto_now_add=True, blank=True
+#     )
+
+#     class Meta:
+#         verbose_name = _("Студент (Архив)")
+#         verbose_name_plural = _("Студент (Архив)")
 
 
 class Parent(models.Model):

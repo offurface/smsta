@@ -9,6 +9,22 @@ from rest_framework_simplejwt.token_blacklist.models import (
     OutstandingToken,
     BlacklistedToken,
 )
+from etc.choices import ChoicesEnumMixin, get_choices
+from enum import Enum, unique
+
+
+@unique
+class Role(ChoicesEnumMixin, Enum):
+    """
+    Роль
+    """
+
+    TUTOR = 1, _("Тютор")
+    SUPERVISORY = 2, _("Зам декана по в.р.")
+    ADMIN = 3, _("Администратор")
+
+
+ROLE = get_choices(Role)
 
 
 class ProxyOutstandingToken(OutstandingToken):
@@ -48,7 +64,7 @@ class User(AbstractBaseUser, PermissionsMixin):
             "unique": _("A user with that username already exists."),
         },
     )
-    role = models.IntegerField(verbose_name=_("Роль"), default=1)
+    role = models.IntegerField(verbose_name=_("Роль"), default=1, choices=ROLE)
     first_name = models.CharField(_("first name"), max_length=30, blank=True)
     last_name = models.CharField(_("last name"), max_length=150, blank=True)
     patronymic = models.CharField(

@@ -11,7 +11,7 @@ module.exports = {
       'error',
       2,
       {
-        baseIndent: 0,
+        baseIndent: 1,
         switchCase: 0,
         ignores: []
       }
