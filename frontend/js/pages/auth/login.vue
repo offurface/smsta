@@ -42,6 +42,10 @@
     layout: 'empty',
     metaInfo() {
       const { appName } = window.config
+<<<<<<< HEAD
+=======
+
+>>>>>>> 67a21e0101656c73c91ce74090c78357c1a279d4
       return {
         title: appName,
         titleTemplate: null
@@ -69,8 +73,14 @@
               const next = this.$route.query.next || '/home'
               this.$router.push(next)
             })
+<<<<<<< HEAD
             .catch(error => {
               console.log('ssd', error)
+=======
+            // eslint-disable-next-line handle-callback-err
+            .catch(error => {
+              // console.log('ssd', error)
+>>>>>>> 67a21e0101656c73c91ce74090c78357c1a279d4
             })
         }
       }

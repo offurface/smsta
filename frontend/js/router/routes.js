@@ -22,6 +22,7 @@ const GroupsDetail = () =>
   import(
     /* webpackChunkName: "login" */ '@/pages/academic-group/groups-detail'
   ).then(m => m.default || m)
+<<<<<<< HEAD
 const StudentDetail = () =>
   import(
     /* webpackChunkName: "login" */ '@/pages/students/students-detail'
@@ -42,6 +43,8 @@ const TrainingDirectionList = () =>
   import(
     /* webpackChunkName: "login" */ '@/pages/reference/training-direction'
   ).then(m => m.default || m)
+=======
+>>>>>>> 67a21e0101656c73c91ce74090c78357c1a279d4
 export default [
   { path: '/', name: 'login', component: Login },
   { path: '/home/', name: 'home', component: Home },
