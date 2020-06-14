@@ -7,6 +7,25 @@ export const state = {
 
 export const getters = {
   groups: state => state.groups,
+  searchGroups: state => (search, all) => {
+    return state.groups.filter(group => {
+      const tmpSeach = search.toLowerCase()
+      if (all) {
+        return (
+          group.name.toLowerCase().includes(tmpSeach) ||
+          group.department.short_name.toLowerCase().includes(tmpSeach) ||
+          group.start_date.includes(tmpSeach)
+        )
+      } else {
+        return (
+          group.course < 5 &&
+          (group.name.toLowerCase().includes(tmpSeach) ||
+            group.department.short_name.toLowerCase().includes(tmpSeach) ||
+            group.start_date.includes(tmpSeach))
+        )
+      }
+    })
+  },
   group: state => state.group
 }
 

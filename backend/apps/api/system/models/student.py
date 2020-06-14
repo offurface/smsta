@@ -2,11 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from .university import AcademicGroup
 from .other import Hostel, Citizenship, Nationality, NativeLanguage
-from .enums import (
-    GENDERS,
-    DISABILITY_GROUP,
-    PAYMENT_TRAINING,
-)
+from .enums import GENDERS, DISABILITY_GROUP, PAYMENT_TRAINING, ACTIVE_GROUP
 
 
 class Student(models.Model):
@@ -43,23 +39,32 @@ class Student(models.Model):
         blank=True,
         null=True,
     )
-    name = models.CharField(verbose_name=_("Имя"), max_length=30)
-    surname = models.CharField(verbose_name=_("Фамилия"), max_length=150)
+    name = models.CharField(verbose_name=_("Имя"), max_length=50, default="")
+    surname = models.CharField(
+        verbose_name=_("Фамилия"), max_length=50, default=""
+    )
     patronymic = models.CharField(
-        verbose_name=_("Отчество"), max_length=150, default=""
+        verbose_name=_("Отчество"), max_length=50, default=""
     )
     gender = models.IntegerField(choices=GENDERS, verbose_name=_("Пол"))
+    active_group = models.IntegerField(
+        choices=ACTIVE_GROUP, verbose_name=_("Актив группы"), default=0
+    )
     birth_place = models.CharField(
-        verbose_name=_("Место рождения"), max_length=255
+        verbose_name=_("Место рождения"), max_length=255, default=""
     )
     address = models.CharField(
-        verbose_name=_("Адрес по прописке"), max_length=255
+        verbose_name=_("Адрес по прописке"), max_length=255, default=""
     )
     address_fact = models.CharField(
-        verbose_name=_("Адрес фактический"), max_length=255
+        verbose_name=_("Адрес фактический"), max_length=255, default=""
     )
-    series = models.IntegerField(verbose_name=_("Серия пасспорта"))
-    number = models.IntegerField(verbose_name=_("Номер пасспорта"))
+    series = models.CharField(
+        verbose_name=_("Серия пасспорта"), default="", max_length=6
+    )
+    number = models.CharField(
+        verbose_name=_("Номер пасспорта"), default="", max_length=6
+    )
     payment_training = models.IntegerField(
         choices=PAYMENT_TRAINING,
         verbose_name=_("Способ финансирования"),
@@ -70,6 +75,7 @@ class Student(models.Model):
         verbose_name=_("Форма инвалидности"),
         blank=True,
         null=True,
+        default=0,
     )
     is_orphan = models.BooleanField(
         default=False,
@@ -190,11 +196,13 @@ class Parent(models.Model):
         blank=True,
         null=True,
     )
-    name = models.CharField(verbose_name=_("ФИО"), max_length=255)
+    name = models.CharField(verbose_name=_("ФИО"), max_length=255, default="")
     work = models.CharField(
-        verbose_name=_("Место работы, должность"), max_length=255
+        verbose_name=_("Место работы, должность"), max_length=255, default=""
     )
-    phone = models.CharField(verbose_name=_("Телефон"), max_length=25)
+    phone = models.CharField(
+        verbose_name=_("Телефон"), max_length=25, default=""
+    )
 
     def __str__(self):
         return self.name
@@ -223,8 +231,12 @@ class ResidenceHostel(models.Model):
         blank=True,
         null=True,
     )
-    room = models.IntegerField(
-        verbose_name=_("Номер комнаты"), blank=True, null=True
+    room = models.CharField(
+        verbose_name=_("Номер комнаты"),
+        blank=True,
+        null=True,
+        default="",
+        max_length=10,
     )
     is_family = models.BooleanField(
         default=False, verbose_name=_("Семейная комната"),

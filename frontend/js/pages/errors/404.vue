@@ -5,12 +5,12 @@
 </template>
 
 <script>
-export default {
-  layout: 'empty',
-  metaInfo() {
-    return {
-      title: this.$t('page_not_found')
+  export default {
+    layout: 'empty',
+    metaInfo() {
+      return {
+        title: this.$t('page_not_found')
+      }
     }
   }
-}
 </script>

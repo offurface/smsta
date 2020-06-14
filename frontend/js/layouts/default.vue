@@ -3,22 +3,35 @@
     <!-- Navbar start -->
     <v-app-bar app clipped-left>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title></v-toolbar-title>
+      <v-toolbar-title>Дневник тьютора</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn class="mx-2" @click="logout()" fab dark small color="pink">
-        <v-icon dark>mdi-account-cancel</v-icon>
-      </v-btn>
+      <h4 class="body-1 mr-3">
+        {{ user.username }}
+      </h4>
+      <v-menu offset-y>
+        <template v-slot:activator="{ on }">
+          <v-btn dark v-on="on" fab small>
+            <v-icon dark>mdi-account</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item link>
+            <v-list-item-title>
+              Личный кабинет
+            </v-list-item-title>
+          </v-list-item>
+          <v-list-item link>
+            <v-list-item-title @click="logout()">
+              Выход
+            </v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
     <!-- Navbar end -->
 
     <!-- Sidebar start -->
-    <v-navigation-drawer
-      :clipped="true"
-      v-model="drawer"
-      absolute
-      temporary
-      app
-    >
+    <v-navigation-drawer :clipped="true" v-model="drawer" fixed temporary app>
       <v-list v-for="(category, i) in sidebar" :key="i" dense>
         <v-subheader>{{ category.name }}</v-subheader>
         <v-list-item
@@ -34,6 +47,14 @@
             <v-list-item-title>{{ link.name }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item link @click="logout()">
+          <v-list-item-action>
+            <v-icon>mdi-account-cancel</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Выход</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <!-- Sidebar end -->
@@ -45,9 +66,9 @@
     <!-- Content end -->
 
     <!-- Footer start -->
-    <v-footer app>
+    <!-- <v-footer app>
       <span></span>
-    </v-footer>
+    </v-footer> -->
     <!-- Footer end -->
   </v-app>
 </template>
@@ -62,7 +83,8 @@
       }
     },
     computed: {
-      ...mapGetters('interface', ['sidebar'])
+      ...mapGetters('interface', ['sidebar']),
+      ...mapGetters('auth', ['user'])
     },
     methods: {
       logout() {

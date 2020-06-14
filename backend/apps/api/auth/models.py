@@ -20,7 +20,7 @@ class Role(ChoicesEnumMixin, Enum):
     """
 
     TUTOR = 1, _("Тютор")
-    SUPERVISORY = 2, _("Зам декана по в.р.")
+    SUPERVISORY = 2, _("Контроль работы")
     ADMIN = 3, _("Администратор")
 
 
@@ -69,6 +69,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(_("last name"), max_length=150, blank=True)
     patronymic = models.CharField(
         verbose_name=_("Отчество"), max_length=150, blank=True, null=True
+    )
+    employe_position = models.CharField(
+        verbose_name=_("Должность сотрудника"),
+        max_length=150,
+        blank=True,
+        null=True,
+    )
+    phone = models.CharField(
+        verbose_name=_("Номер телефона"), max_length=150, blank=True, null=True
     )
     email = models.EmailField(_("email address"), blank=True)
     is_staff = models.BooleanField(

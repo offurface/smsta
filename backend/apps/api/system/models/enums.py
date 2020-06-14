@@ -20,6 +20,7 @@ class DisabilityGroup(ChoicesEnumMixin, Enum):
     Группы инвалидности
     """
 
+    NONE = 0, _("Отсутствует")
     FIRST = 1, _("1 группа")
     SECOND = 2, _("2 группа")
     THIRD = 3, _("3 группа")
@@ -31,6 +32,7 @@ class ActiveGroup(ChoicesEnumMixin, Enum):
     Актив группы
     """
 
+    NONE = 0, _("Отсутствует")
     FIRST = 1, _("Староста")
     SECOND = 2, _("Профгруппорг")
 
@@ -48,7 +50,7 @@ class Semesters(ChoicesEnumMixin, Enum):
 @unique
 class FormTraining(ChoicesEnumMixin, Enum):
     """
-    Вид обучения
+    Форма обучения
     """
 
     INTRAMURAL = 1, _("Очное")
@@ -62,7 +64,6 @@ class PaymentTraining(ChoicesEnumMixin, Enum):
     Способ финансирования
     """
 
-    NONE = 0, _("Не выбрано")
     BUDGETARY = 1, _("Бюджетная")
     COMMERCIAL = 2, _("Комерческая")
 

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .. import models
+from ... import models
 
 
 class DepartmentSerializers(serializers.ModelSerializer):
@@ -19,7 +19,7 @@ class StudentSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = models.Student
-        fields = ["name", "surname", "patronymic", "gender"]
+        fields = ["pk", "name", "surname", "patronymic", "gender"]
 
 
 class AcademicGroupsDetailSerializers(serializers.ModelSerializer):
@@ -32,14 +32,11 @@ class AcademicGroupsDetailSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = models.AcademicGroup
-        fields = ["pk", "start_date", "department", "name", "students"]
-
-
-class AcademicGroupsSerializers(serializers.ModelSerializer):
-    """
-    Сериализатор Академических Групп
-    """
-
-    class Meta:
-        model = models.AcademicGroup
-        fields = ["pk", "start_date", "department", "name"]
+        fields = [
+            "pk",
+            "start_date",
+            "department",
+            "name",
+            "students",
+            "course",
+        ]

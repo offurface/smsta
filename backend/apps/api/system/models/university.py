@@ -1,4 +1,6 @@
+from datetime import datetime
 from django.db import models
+from django.utils import dateformat
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 from .enums import (
@@ -7,6 +9,25 @@ from .enums import (
     TYPE_TRAINING,
     TypeTraining,
 )
+import math
+
+
+class TrainingDirection(models.Model):
+    """
+    Направление Обучения
+    """
+
+    letters = models.CharField(verbose_name=_("Символы"), max_length=25)
+    code = models.CharField(verbose_name=_("Код"), max_length=25)
+    name = models.CharField(verbose_name=_("Направление"), max_length=255)
+    target = models.CharField(verbose_name=_("Профиль"), max_length=255)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _("Направление")
+        verbose_name_plural = _("Направления")
 
 
 class Faculty(models.Model):
@@ -81,6 +102,13 @@ class AcademicGroup(models.Model):
         blank=True,
         null=True,
     )
+    training_direction = models.ForeignKey(
+        TrainingDirection,
+        on_delete=models.SET_NULL,
+        verbose_name=_("Направление"),
+        blank=True,
+        null=True,
+    )
     payment_training = models.IntegerField(
         choices=FORM_TRAINING, verbose_name=_("Форма обучения"), default=1
     )
@@ -99,6 +127,10 @@ class AcademicGroup(models.Model):
     )
 
     @property
+    def start_date_ru(self):
+        return dateformat.format(self.start_date, ("d E Y"))
+
+    @property
     def name(self):
         """
         Возвращает название группы
@@ -112,7 +144,28 @@ class AcademicGroup(models.Model):
             letters += "OZ"
         if self.type_training == TypeTraining.ABRIDGED.value:
             letters += "S"
-        return letters + "-" + numbers
+        numbers += str(self.department.faculty.public_id)
+        subtr_date = datetime.now().date() - self.start_date
+        year = subtr_date.days / 365
+        if year < 1:
+            numbers += "1"
+        elif year < 2:
+            numbers += "2"
+        elif year < 3:
+            numbers += "3"
+        else:
+            numbers += "4"
+        return letters + "-" + numbers + "1"
+
+    @property
+    def course(self):
+        subtr_date = datetime.now().date() - self.start_date
+        year = subtr_date.days / 365
+        course = math.ceil(year)
+        if course < 5:
+            return course
+        else:
+            return 5
 
     def __str__(self):
         return self.name

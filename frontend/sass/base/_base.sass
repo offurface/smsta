@@ -3,22 +3,6 @@
 body
   font-family: 'OpenSans'
 
-.default-layout
-  .top-bar
-    width: 100%
-    background-color: gray
-    height: 7vh
-  &__page
-    height: 100vh - 7vh
-    position: relative
-    .side-bar
-      height: 100%
-      width: 250px
-      z-index: 1
-      transform: translateX(-250px)
-      position: absolute
-      flex-wrap: nowrap
-      background-color: yellow
-      transition: .3s
-      &__active
-        transform: translateX(0px)!important
+.cursor-pointer
+  cursor: pointer!important
+

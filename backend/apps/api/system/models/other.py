@@ -2,22 +2,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-# class Semester(models.Model):
-#     """
-#     Семестр
-#     """
-
-#     start = models.DateField(verbose_name="Начало семестра")
-#     start = models.DateField(verbose_name="Конец семестра")
-
-#     def __str__(self):
-#         return ""
-
-#     class Meta:
-#         verbose_name = _("Общежитие")
-#         verbose_name_plural = _("Общежития")
-
-
 class Hostel(models.Model):
     """
     Общежитие
