@@ -30,9 +30,9 @@ export const state = {
           to: '/native-language'
         },
         {
-          icon: 'mdi-bookshelf',
-          name: 'Направления',
-          to: '/training-direction'
+            icon: 'mdi-bookshelf',
+            name: 'Направления',
+            to: '/training-direction'
         }
       ]
     }
