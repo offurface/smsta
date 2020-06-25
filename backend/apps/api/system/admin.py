@@ -1,7 +1,14 @@
 from django.contrib.admin import register, ModelAdmin, TabularInline
 from apps.core.utils.admin import BaseAdminMixin
 
-from .models import Student, Parent, Faculty, Department, AcademicGroup
+from .models import (
+    Student,
+    Parent,
+    Faculty,
+    Department,
+    AcademicGroup,
+    TrainingDirection,
+)
 
 
 class ParentInline(TabularInline):
@@ -55,6 +62,15 @@ class FacultyAdmin(BaseAdminMixin, ModelAdmin):
 class AcademicGroupAdmin(BaseAdminMixin, ModelAdmin):
     """
     Админка группы
+    """
+
+    list_display = ("name",)
+
+
+@register(TrainingDirection)
+class TrainingDirectionAdmin(BaseAdminMixin, ModelAdmin):
+    """
+    Направление обучения
     """
 
     list_display = ("name",)

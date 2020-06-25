@@ -120,11 +120,6 @@ class AcademicGroup(models.Model):
     subgroup_number = models.IntegerField(
         verbose_name=_("Номер подгруппы"), default=1,
     )
-    letters = models.CharField(
-        max_length=6,
-        verbose_name=_("Сокращенное наименование группы"),
-        default="",
-    )
 
     @property
     def start_date_ru(self):
@@ -134,10 +129,10 @@ class AcademicGroup(models.Model):
     def name(self):
         """
         Возвращает название группы
-        TODO: Написать свойство возвращающее названия группы
         """
         numbers = ""
-        letters = self.letters
+        letters = self.training_direction.letters
+        # letters = ""
         if self.payment_training == FormTraining.EXTRAMURAL.value:
             letters += "Z"
         if self.payment_training == FormTraining.INTRAMURAL_EXTRAMURAL.value:

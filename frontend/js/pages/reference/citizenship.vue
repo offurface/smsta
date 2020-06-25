@@ -15,8 +15,8 @@
               Справочник гражданств
               <v-menu offset-y>
                 <template v-slot:activator="{ on }">
-                  <v-btn dark v-on="on" fab small>
-                    <v-icon dark>mdi-plus</v-icon>
+                  <v-btn  v-on="on" fab small>
+                    <v-icon >mdi-plus</v-icon>
                   </v-btn>
                 </template>
                 <v-list>
@@ -76,10 +76,10 @@
 
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="green darken-2" @click="objectPost()">
+                  <v-btn color="green " @click="objectPost()">
                     Добавить
                   </v-btn>
-                  <v-btn color="red darken-2" @click="dialogPost = false">
+                  <v-btn color="red " @click="dialogPost = false">
                     Отмена
                   </v-btn>
                 </v-card-actions>
@@ -101,11 +101,11 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="green darken-1" text @click="objectPut()">
+                  <v-btn color="green " text @click="objectPut()">
                     Обновить
                   </v-btn>
                   <v-btn
-                    color="yellow darken-1"
+                    color="yellow "
                     text
                     @click="dialogPut = false"
                   >

@@ -10,10 +10,6 @@ const Login = () =>
   import(/* webpackChunkName: "login" */ '@/pages/auth/login').then(
     m => m.default || m
   )
-const Test = () =>
-  import(/* webpackChunkName: "login" */ '@/pages/test').then(
-    m => m.default || m
-  )
 const GroupsList = () =>
   import(
     /* webpackChunkName: "login" */ '@/pages/academic-group/groups-list'
@@ -22,7 +18,6 @@ const GroupsDetail = () =>
   import(
     /* webpackChunkName: "login" */ '@/pages/academic-group/groups-detail'
   ).then(m => m.default || m)
-<<<<<<< HEAD
 const StudentDetail = () =>
   import(
     /* webpackChunkName: "login" */ '@/pages/students/students-detail'
@@ -43,12 +38,10 @@ const TrainingDirectionList = () =>
   import(
     /* webpackChunkName: "login" */ '@/pages/reference/training-direction'
   ).then(m => m.default || m)
-=======
->>>>>>> 67a21e0101656c73c91ce74090c78357c1a279d4
+
 export default [
   { path: '/', name: 'login', component: Login },
   { path: '/home/', name: 'home', component: Home },
-  { path: '/test/', name: 'test', component: Test },
   { path: '/groups/', name: 'groups-list', component: GroupsList },
   {
     path: '/nationality/',

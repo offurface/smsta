@@ -9,11 +9,11 @@
         </v-row>
       </v-container>
       <v-container fluid v-else>
-        <v-row justify="center">
+        <!-- <v-row justify="center">
           <v-col cols="8" sm="8">
             <v-card>{{ student }}</v-card>
           </v-col>
-        </v-row>
+        </v-row> -->
         <v-row>
           <v-col>
             <student-retrive :student="student"></student-retrive>

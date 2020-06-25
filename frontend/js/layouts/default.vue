@@ -10,8 +10,8 @@
       </h4>
       <v-menu offset-y>
         <template v-slot:activator="{ on }">
-          <v-btn dark v-on="on" fab small>
-            <v-icon dark>mdi-account</v-icon>
+          <v-btn v-on="on" fab small>
+            <v-icon>mdi-account</v-icon>
           </v-btn>
         </template>
         <v-list>

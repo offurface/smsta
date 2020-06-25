@@ -71,7 +71,7 @@ class PaymentTraining(ChoicesEnumMixin, Enum):
 @unique
 class TypeTraining(ChoicesEnumMixin, Enum):
     """
-    Сокращенная
+    Форма обучения
     """
 
     UNABRIDGED = 1, _("Не сокращенная")

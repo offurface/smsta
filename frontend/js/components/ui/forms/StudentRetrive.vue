@@ -1,19 +1,19 @@
 <template>
-  <v-card class="overflow-hidden" color="lighten-3" dark>
+  <v-card class="overflow-hidden" color="lighten-3">
     <v-toolbar flat>
       <v-icon class="mr-2">mdi-account</v-icon>
       <v-toolbar-title class="font-weight-light">
         Информация о студенте
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn color="yellow darken-4" fab small @click="isEditing = !isEditing">
+      <v-btn color="yellow" fab small @click="isEditing = !isEditing">
         <v-icon v-if="isEditing">mdi-close</v-icon>
         <v-icon v-else>mdi-pencil</v-icon>
       </v-btn>
     </v-toolbar>
     <v-card-text>
       <v-form ref="form">
-        <v-tabs v-model="tab" class="mb-4" dark color="white">
+        <v-tabs v-model="tab" class="mb-4">
           <v-tab>
             Основное
           </v-tab>

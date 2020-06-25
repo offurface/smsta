@@ -155,7 +155,6 @@ class Student(models.Model):
         return self.surname + " " + self.name
 
     class Meta:
-        # abstract = True
         verbose_name = _("Студент")
         verbose_name_plural = _("Студенты")
 

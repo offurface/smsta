@@ -18,6 +18,7 @@ DEFAULT_APPS = [
     "etc",
     "drf_multiple_model",
     "rest_framework_simplejwt.token_blacklist",
+    "django_extensions",
 ]
 
 PROJECT_APPS = [
